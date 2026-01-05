@@ -16,9 +16,10 @@ void initBoard(int rowsize, int colsize)
 
     for(b=0;b<=1;b++) {
         board[b] = malloc((size_t)(rowsize * sizeof(char *)));
-        for (i=0; i < rowsize; i++) {
-            board[b][i] = calloc((size_t)colsize, sizeof(char));
-        }
+		board[b][0] = calloc((size_t)(rowsize * colsize), sizeof(char));
+		for (i=1; i < rowsize; i++) {
+			board[b][i] = board[b][i-1] + colsize*sizeof(char);
+		}
     }
 
 } // initBoard
